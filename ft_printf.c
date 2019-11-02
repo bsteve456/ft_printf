@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:42:34 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/02 14:39:20 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/02 16:12:19 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int		ft_printf(const char *str, ...)
 	while(*str)
 	{
 		if(parse(str, params, &count) == 1)
-		{
 			str++;
-		}
+		else
+			write(1, str, 1);
 		str++;
 	}
 	va_end(params);
