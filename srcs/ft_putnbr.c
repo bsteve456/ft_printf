@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:43:31 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/11/05 15:00:20 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/05 16:00:36 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_putnbr(int nbr, int *p)
 	ft_putchar((nb % 10) + '0');
 }
 
-void	ft_putnbr_hexa2(long nbr, int *p, const char *str)
+void	ft_putnbr_hexa(long nbr, int *p, const char *str)
 {
 	char *hexa;
 	unsigned long nb;
@@ -47,17 +47,17 @@ void	ft_putnbr_hexa2(long nbr, int *p, const char *str)
 	else
 		nb = (unsigned int)nbr;
 	if (nb >= 16)
-		ft_putnbr_hexa2((nb / 16), p, str);
+		ft_putnbr_hexa((nb / 16), p, str);
 	*p += 1;
 	ft_putchar(hexa[nb % 16]);
 }
 
-void	ft_putnbr_hexa(char *nbr, int *p, const char *str)
+void	ft_putaddr(char *nbr, int *p, const char *str)
 {
 	unsigned long nb;
 
 	*p += 2;
 	write(1, "0x", 2);
 	nb = (unsigned long)(nbr);
-	ft_putnbr_hexa2(nb, p, str);
+	ft_putnbr_hexa(nb, p, str);
 }
