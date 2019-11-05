@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 16:42:34 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/05 15:51:56 by blacking         ###   ########.fr       */
+/*   Created: 2019/11/05 10:43:59 by blacking          #+#    #+#             */
+/*   Updated: 2019/11/05 11:06:43 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libftprintf.h"
+#include "../includes/libftprintf.h"
 
-int		ft_printf(const char *str, ...)
+void	ft_putchar_int(unsigned char c, int *p)
 {
-	va_list params;
-	int count;
+	write(1, &c, 1);
+	*p += 1;
+}
 
-	va_start(params, str);
-	count = 0;
+
+
+void	ft_putstr(char *str, int *p)
+{
 	while(*str)
 	{
-		if(parse(str, params, &count) == 1)
-			str++;
-		else
-		{
-			write(1, str, 1);
-			count += 1;
-		}
+		write(1, str, 1);
 		str++;
+		*p += 1;
 	}
-	va_end(params);
-	return (count);
 }

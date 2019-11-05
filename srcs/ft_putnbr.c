@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:43:31 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/11/02 14:37:59 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/05 15:00:20 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,40 @@ void	ft_putnbr(int nbr, int *p)
 	if (nbr < 0)
 	{
 		ft_putchar('-');
-		nb = nbr * (-1);
+		*p += 1;
 	}
-	else
-		nb = nbr;
+	nb = (nbr < 0) ? -nbr : nbr;
 	if (nb >= 10)
 		ft_putnbr((nb / 10), p);
 	*p += 1;
 	ft_putchar((nb % 10) + '0');
+}
+
+void	ft_putnbr_hexa2(long nbr, int *p, const char *str)
+{
+	char *hexa;
+	unsigned long nb;
+
+	if(ft_strncmp(str, "%x", 2) == 0 || ft_strncmp(str, "%p", 2) == 0)
+		hexa = "0123456789abcdef";
+	else
+		hexa = "0123456789ABCDEF";
+	if(ft_strncmp(str, "%p", 2) == 0)
+		nb = nbr;
+	else
+		nb = (unsigned int)nbr;
+	if (nb >= 16)
+		ft_putnbr_hexa2((nb / 16), p, str);
+	*p += 1;
+	ft_putchar(hexa[nb % 16]);
+}
+
+void	ft_putnbr_hexa(char *nbr, int *p, const char *str)
+{
+	unsigned long nb;
+
+	*p += 2;
+	write(1, "0x", 2);
+	nb = (unsigned long)(nbr);
+	ft_putnbr_hexa2(nb, p, str);
 }
