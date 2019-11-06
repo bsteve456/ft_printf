@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:34:39 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/06 13:31:21 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/06 16:09:55 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ int		ft_isdigit(int c);
 int		count_numbers(int number);
 size_t	ft_strlen(const char *s);
 void	ft_fill_struct(const char **str, int *count, va_list ap);
+void	width_precision(t_printf *params, int *count);
 #endif
