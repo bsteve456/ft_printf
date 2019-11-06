@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:34:39 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/05 15:58:14 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/06 12:22:37 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,11 @@ void	ft_putstr(char *str, int *p);
 void	ft_putchar_int(unsigned char c, int *p);
 void	ft_putaddr(char *nbr, int *p, const char *str);
 void	ft_putnbr_hexa(long nbr, int *p, const char *str);
+typedef struct	s_printf
+{
+	char	type;
+	int		width;
+	int		var_int;
+}				t_printf;
 
 #endif
