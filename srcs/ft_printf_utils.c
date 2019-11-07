@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:14:20 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/06 12:21:05 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/07 14:48:56 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	count_numbers(int number)
+int	count_numbers(long number, int base)
 {
 	int count;
 
@@ -35,7 +35,7 @@ int	count_numbers(int number)
 		return (1);
 	while (number != 0)
 	{
-		number /= 10;
+		number /= base;
 		count++;
 	}
 	return (count);

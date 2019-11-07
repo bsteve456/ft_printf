@@ -6,12 +6,11 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/06 16:14:05 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/07 16:24:21 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libftprintf.h"
-#include <stdio.h>
 
 t_printf	*init_struct(void)
 {
@@ -23,12 +22,19 @@ t_printf	*init_struct(void)
 	new->type = 0;
 	new->width = 0;
 	new->var_int = 0;
+	new->var_string = NULL;
+	new->var_unslong = 0;
 	return (new);
 }
 
 void	ft_parsing_flags(t_printf *params, int *count)
 {
 	width_precision(params, count);
+	if(params->type == 'p')
+	{
+		write(1, "0x", 2);
+		*count += 2;
+	}
 	parse(params, count);
 	free(params);
 }
@@ -44,7 +50,10 @@ void	ft_fill_struct(const char **str, int *count, va_list ap)
 			params->width = (params->width * 10) + (**str - '0');
 		(*str)++;
 	}
-	params->var_int = va_arg(ap, int);
 	params->type = **str;
+	if (params->type == 'p')
+		ft_putaddr(params, count, ap);
+	else
+		params->var_int = va_arg(ap, int);
 	ft_parsing_flags(params, count);
 }
