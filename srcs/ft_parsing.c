@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 12:49:37 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/07 16:18:50 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/08 11:29:31 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	parse(t_printf *params, int *count)
 //		ft_putstr(va_arg(params, char *), count);
 	else if(params->type == 'p')
 		ft_putnbr_hexa(params->var_unslong, count, params);
-//	else if(ft_strncmp(str, "%x", 2) == 0 ||
-//	ft_strncmp(str, "%X", 2) == 0)
-//		ft_putnbr_hexa(va_arg(params, int), count, str);
+	else if(params->type == 'x' || params->type == 'X')
+		ft_putnbr_hexa(params->var_unsint, count, params);
 //	else if(ft_strncmp(str, "%%", 2) == 0)
 //		ft_putchar_int('%', count);
 }

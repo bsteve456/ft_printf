@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:43:31 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/11/07 16:17:33 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/08 11:18:42 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,4 @@ void	ft_putaddr(t_printf *params, int *p, va_list ap)
 	params->var_string = va_arg(ap, char *);
 	nb = (unsigned long)(params->var_string);
 	params->var_unslong = nb;
-//	ft_putnbr_hexa(nb, p, params);
 }

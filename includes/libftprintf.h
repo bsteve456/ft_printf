@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:34:39 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/07 16:18:16 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/08 11:24:21 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_printf
 	int				var_int;
 	char			*var_string;
 	unsigned long	var_unslong;
+	unsigned int 	var_unsint;
 }				t_printf;
 int		ft_printf(const char *, ...);
 void	parse(t_printf *params, int *count);

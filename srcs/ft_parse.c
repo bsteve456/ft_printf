@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/07 16:24:21 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/08 11:26:35 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,15 @@ t_printf	*init_struct(void)
 	new->var_int = 0;
 	new->var_string = NULL;
 	new->var_unslong = 0;
+	new->var_unsint = 0;
 	return (new);
 }
 
 void	ft_parsing_flags(t_printf *params, int *count)
 {
 	width_precision(params, count);
-	if(params->type == 'p')
-	{
-		write(1, "0x", 2);
+	if(params->type == 'p' && write(1, "0x", 2))
 		*count += 2;
-	}
 	parse(params, count);
 	free(params);
 }
@@ -53,6 +51,8 @@ void	ft_fill_struct(const char **str, int *count, va_list ap)
 	params->type = **str;
 	if (params->type == 'p')
 		ft_putaddr(params, count, ap);
+	else if(params->type == 'x' || params->type == 'X')
+		params->var_unsint = va_arg(ap, int);
 	else
 		params->var_int = va_arg(ap, int);
 	ft_parsing_flags(params, count);
