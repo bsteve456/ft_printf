@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:43:31 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/11/08 11:18:42 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/08 12:06:13 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ void	ft_putnbr_hexa(long nbr, int *p, t_printf *params)
 		hexa = "0123456789abcdef";
 	else
 		hexa = "0123456789ABCDEF";
-	if(params->type == 'p')
-		nb = nbr;
-	else
-		nb = (unsigned int)nbr;
+	nb = nbr;
 	if (nb >= 16)
 		ft_putnbr_hexa((nb / 16), p, params);
 	*p += 1;
