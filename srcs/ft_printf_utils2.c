@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/08 14:41:59 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/08 14:57:43 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	width_precision(t_printf *params, int *count)
 	int size;
 
 	i = 0;
-	if(params->type == 'c' || params->type == '%')
+	if(params->type == 'c')
 		size = 1;
 	else if (params->type == 'p')
 		size = count_numbers(params->var_unslong, 16) + 2;
