@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/08 11:26:35 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/08 14:52:04 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ t_printf	*init_struct(void)
 
 void	ft_parsing_flags(t_printf *params, int *count)
 {
-	width_precision(params, count);
+	if(params->type != '%')
+		width_precision(params, count);
 	if(params->type == 'p' && write(1, "0x", 2))
 		*count += 2;
 	parse(params, count);
@@ -42,7 +43,8 @@ void	ft_fill_struct(const char **str, int *count, va_list ap)
 	t_printf *params;
 
 	params = init_struct();
-	while(ft_isalpha(**str) == 0)
+	(*str)++;
+	while(ft_isalpha(**str) == 0 && **str != '%')
 	{
 		if(ft_isdigit(**str) == 2048)
 			params->width = (params->width * 10) + (**str - '0');
@@ -51,9 +53,11 @@ void	ft_fill_struct(const char **str, int *count, va_list ap)
 	params->type = **str;
 	if (params->type == 'p')
 		ft_putaddr(params, count, ap);
+	else if(params->type == 's')
+		params->var_string = va_arg(ap, char *);
 	else if(params->type == 'x' || params->type == 'X')
 		params->var_unsint = va_arg(ap, int);
-	else
+	else if(params->type != '%')
 		params->var_int = va_arg(ap, int);
 	ft_parsing_flags(params, count);
 }
