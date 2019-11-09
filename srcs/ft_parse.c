@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/08 14:52:04 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/09 15:10:36 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@ t_printf	*init_struct(void)
 	new = NULL;
 	if(!(new = (t_printf *)malloc(sizeof(t_printf))))
 		return (NULL);
-	new->type = 0;
 	new->width = 0;
-	new->var_int = 0;
-	new->var_string = NULL;
-	new->var_unslong = 0;
-	new->var_unsint = 0;
+	new->minus = 0;
+	new->zero = 0;
 	return (new);
 }
 
 void	ft_parsing_flags(t_printf *params, int *count)
 {
-	if(params->type != '%')
-		width_precision(params, count);
+	if(params->type != '%' && params->minus == 0 && params->zero == 0)
+		width(params, count);
+	else if(params->zero == 1 &&
+	params->type != '%' && params->type != 's' &&
+	params->type != 'c')
+		width_zero(params, count);
 	if(params->type == 'p' && write(1, "0x", 2))
 		*count += 2;
 	parse(params, count);
+	if(params->minus == 1)
+		width(params, count);
 	free(params);
 }
 
@@ -43,14 +46,7 @@ void	ft_fill_struct(const char **str, int *count, va_list ap)
 	t_printf *params;
 
 	params = init_struct();
-	(*str)++;
-	while(ft_isalpha(**str) == 0 && **str != '%')
-	{
-		if(ft_isdigit(**str) == 2048)
-			params->width = (params->width * 10) + (**str - '0');
-		(*str)++;
-	}
-	params->type = **str;
+	fill_width_precision(str, params);
 	if (params->type == 'p')
 		ft_putaddr(params, count, ap);
 	else if(params->type == 's')
