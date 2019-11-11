@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/11 17:17:05 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/11 23:06:05 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	width(t_printf *params, int *count)
 	else if (params->type == 'p')
 		size = count_numbers(params->var_unslong, 16) + 2;
 	else if(params->type == 'x' || params->type == 'X')
-		size = count_numbers(params->var_unsint, 10);
+		size = count_numbers(params->var_unsint, 16);
 	else if(params->type == 's')
 		size = ft_strlen(params->var_string);
 	else
@@ -47,7 +47,7 @@ void	width_zero(t_printf *params, int *count)
 	if (params->type == 'p')
 		size = count_numbers(params->var_unslong, 16) + 2;
 	else if(params->type == 'x' || params->type == 'X')
-		size = count_numbers(params->var_unsint, 10);
+		size = count_numbers(params->var_unsint, 16);
 	else
 		size = count_numbers(params->var_int, 10);
 	if(params->var_int < 0)
