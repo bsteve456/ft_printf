@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:34:39 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/11 13:51:06 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:11:01 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		count_numbers(long number, int base);
 size_t	ft_strlen(const char *s);
 void	ft_fill_struct(const char **str, int *count, va_list ap);
 void	width(t_printf *params, int *count);
-void	fill_width_precision(const char **str, t_printf *params);
+void	fill_width_precision(const char **str, t_printf *params, va_list ap);
 void	width_zero(t_printf *params, int *count);
 void	precision(t_printf *params, int *count);
 

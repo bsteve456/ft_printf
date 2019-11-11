@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/11 15:21:00 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:17:05 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	width(t_printf *params, int *count)
 		i++;
 	}
 }
-#include <stdio.h>
+
 void	width_zero(t_printf *params, int *count)
 {
 	int i;
@@ -64,7 +64,7 @@ void	width_zero(t_printf *params, int *count)
 	}
 }
 
-void	fill_width_precision(const char **str, t_printf *params)
+void	fill_width_precision(const char **str, t_printf *params, va_list ap)
 {
 	(*str)++;
 	if (**str == '0')
@@ -75,6 +75,10 @@ void	fill_width_precision(const char **str, t_printf *params)
 			params->minus = 1;
 		if(**str == '.')
 			params->dot = 1;
+		if(**str == '*' && params->dot == 0)
+			params->width = va_arg(ap, int);
+		else if(**str == '*' && params->dot == 1)
+			params->prec = va_arg(ap, int);
 		if(ft_isdigit(**str) == 2048 && params->dot == 0)
 			params->width = (params->width * 10) + (**str - '0');
 		else if(ft_isdigit(**str) == 2048 && params->dot == 1)

@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/11 14:01:06 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:10:30 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_fill_struct(const char **str, int *count, va_list ap)
 	t_printf *params;
 
 	params = init_struct();
-	fill_width_precision(str, params);
+	fill_width_precision(str, params, ap);
 	if (params->type == 'p')
 		ft_putaddr(params, count, ap);
 	else if(params->type == 's')
