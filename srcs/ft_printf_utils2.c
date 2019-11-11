@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/11 14:08:15 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/11 15:21:00 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	width(t_printf *params, int *count)
 		size = ft_strlen(params->var_string);
 	else
 		size = count_numbers(params->var_int, 10);
+	size = (params->prec > size) ? params->prec : size;
 	while(i < (params->width - size))
 	{
 		ft_putchar_int(' ', count);
@@ -80,6 +81,8 @@ void	fill_width_precision(const char **str, t_printf *params)
 			params->prec = (params->prec * 10) + (**str - '0');
 		(*str)++;
 	}
+	if(params->dot == 1 && params->prec == 0)
+		params->prec += 1;
 	params->type = **str;
 }
 
