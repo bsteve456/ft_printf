@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/09 15:15:45 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/11 14:08:15 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ void	width(t_printf *params, int *count)
 		i++;
 	}
 }
-
+#include <stdio.h>
 void	width_zero(t_printf *params, int *count)
 {
 	int i;
 	int size;
+	int width_prec;
 
 	i = 0;
+	width_prec = (params->dot == 1) ? params->prec : params->width;
 	if (params->type == 'p')
 		size = count_numbers(params->var_unslong, 16) + 2;
 	else if(params->type == 'x' || params->type == 'X')
@@ -51,8 +53,10 @@ void	width_zero(t_printf *params, int *count)
 	{
 		ft_putchar_int('-', count);
 		params->var_int = -(params->var_int);
+		if (params->dot == 1)
+			width_prec += 1;
 	}
-	while(i < (params->width - size))
+	while(i < (width_prec - size))
 	{
 		ft_putchar_int('0', count);
 		i++;
@@ -68,9 +72,28 @@ void	fill_width_precision(const char **str, t_printf *params)
 	{
 		if(**str == '-')
 			params->minus = 1;
-		if(ft_isdigit(**str) == 2048)
+		if(**str == '.')
+			params->dot = 1;
+		if(ft_isdigit(**str) == 2048 && params->dot == 0)
 			params->width = (params->width * 10) + (**str - '0');
+		else if(ft_isdigit(**str) == 2048 && params->dot == 1)
+			params->prec = (params->prec * 10) + (**str - '0');
 		(*str)++;
 	}
 	params->type = **str;
+}
+
+void	precision(t_printf *params, int *count)
+{
+	int i;
+	char *str;
+
+	i = 0;
+	str = params->var_string;
+	while (str[i] && i < params->prec)
+	{
+		ft_putchar(str[i]);
+		*count += 1;
+		i++;
+	}
 }

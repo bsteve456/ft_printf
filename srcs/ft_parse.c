@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/09 15:21:05 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/11 14:01:06 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_printf	*init_struct(void)
 	new->width = 0;
 	new->minus = 0;
 	new->zero = 0;
+	new->dot = 0;
+	new->prec = 0;
 	return (new);
 }
 
@@ -31,6 +33,11 @@ void	ft_parsing_flags(t_printf *params, int *count)
 		width(params, count);
 	else if(params->zero == 1 && params->minus == 0 &&
 	params->type != '%' && params->type != 's' &&
+	params->type != 'c' && params->dot == 0)
+		width_zero(params, count);
+	if(params->dot == 1 && params->type == 's')
+		precision(params, count);
+	else if(params->dot == 1 && params->type != '%' &&
 	params->type != 'c')
 		width_zero(params, count);
 	if(params->type == 'p' && write(1, "0x", 2))

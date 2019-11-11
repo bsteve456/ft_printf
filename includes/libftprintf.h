@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:34:39 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/09 14:55:35 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/11 13:51:06 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct	s_printf
 	unsigned int 	var_unsint;
 	int				minus;
 	int				zero;
+	int				dot;
+	int				prec;
 }				t_printf;
 int		ft_printf(const char *, ...);
 void	parse(t_printf *params, int *count);
@@ -44,4 +46,6 @@ void	ft_fill_struct(const char **str, int *count, va_list ap);
 void	width(t_printf *params, int *count);
 void	fill_width_precision(const char **str, t_printf *params);
 void	width_zero(t_printf *params, int *count);
+void	precision(t_printf *params, int *count);
+
 #endif
