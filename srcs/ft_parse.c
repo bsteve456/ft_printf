@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/12 11:56:50 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/12 15:54:46 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_printf	*init_struct(void)
 
 void	ft_parsing_flags(t_printf *params, int *count)
 {
-	if(params->type != '%' && params->minus == 0 && params->zero == 0)
+	if(params->minus == 0 && params->zero == 0)
 		width(params, count);
 	else if(params->zero == 1 && params->minus == 0 &&
 	params->type != '%' && params->type != 's' &&
@@ -47,7 +47,7 @@ void	ft_parsing_flags(t_printf *params, int *count)
 		width(params, count);
 	free(params);
 }
-#include <stdio.h>
+
 void	ft_fill_struct(const char **str, int *count, va_list ap)
 {
 	t_printf *params;
@@ -67,10 +67,7 @@ void	ft_fill_struct(const char **str, int *count, va_list ap)
 		params->var_unsint = va_arg(ap, int);
 	else if(params->type != '%')
 		params->var_int = va_arg(ap, int);
-	if(params->type  == 'p' && params->var_string == NULL)
-	{
-		params->type = 's';
-		params->var_string = "(nil)";
-	}
+	if(params->type == 's' && params->var_string == NULL)
+		params->var_string = "(null)";
 	ft_parsing_flags(params, count);
 }
