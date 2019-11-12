@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 10:43:59 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/05 11:06:43 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/12 16:39:09 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ void	ft_putchar_int(unsigned char c, int *p)
 	*p += 1;
 }
 
-
-
 void	ft_putstr(char *str, int *p)
 {
-	while(*str)
+	while (*str)
 	{
 		write(1, str, 1);
 		str++;

@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:42:34 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/06 13:27:15 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/12 16:43:17 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int		ft_printf(const char *str, ...)
 {
-	va_list params;
-	int count;
+	va_list	params;
+	int		count;
 
 	va_start(params, str);
 	count = 0;
-	while(*str)
+	while (*str)
 	{
-		if(*str == '%')
+		if (*str == '%')
 			ft_fill_struct(&str, &count, params);
 		else
 		{
