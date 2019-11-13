@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/13 18:47:03 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:02:17 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	width(t_printf *params, int *count)
 	else
 		size = count_numbers(params->var_int, 10);
 	size = (params->prec > size) ? params->prec : size;
+	if (params->var_int < 0 && params->dot == 1)
+		size += 1;
 	while (i < (params->width - size))
 	{
 		ft_putchar_int(' ', count);
