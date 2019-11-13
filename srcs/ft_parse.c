@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/12 18:24:45 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/13 18:42:27 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_printf	*init_struct(void)
 	new->zero = 0;
 	new->dot = 0;
 	new->prec = 0;
+	new->dot_num = 0;
 	return (new);
 }
 
@@ -33,8 +34,7 @@ void		ft_parsing_flags(t_printf *params, int *count)
 		(params->zero == 1 && params->dot == 1))
 		width(params, count);
 	else if (params->zero == 1 && params->minus == 0 &&
-	params->type != '%' && params->type != 's' &&
-	params->type != 'c' && params->dot == 0)
+	params->type != 's' && params->type != 'c' && params->dot == 0)
 		width_zero(params, count);
 	if (params->dot == 1 && params->type == 's')
 		precision(params, count);
@@ -43,7 +43,8 @@ void		ft_parsing_flags(t_printf *params, int *count)
 		width_zero(params, count);
 	if (params->type == 'p' && write(1, "0x", 2))
 		*count += 2;
-	parse(params, count);
+	if(verif_dot(params) == 1)
+		parse(params, count);
 	if (params->minus == 1)
 		width(params, count);
 	free(params);

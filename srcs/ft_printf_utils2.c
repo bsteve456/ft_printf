@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/12 16:50:19 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/13 18:47:03 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	fill_width_prec(const char **str, t_printf *params, va_list ap)
 	{
 		if (**str == '-')
 			params->minus = 1;
+		if((ft_isdigit(**str) == 2048 || **str == '*') && params->dot == 1)
+			params->dot_num += 1;
 		if (**str == '.')
 			params->dot = 1;
 		if (**str == '*' && params->dot == 0)
@@ -85,7 +87,7 @@ void	fill_width_prec(const char **str, t_printf *params, va_list ap)
 			params->prec = (params->prec * 10) + (**str - '0');
 		(*str)++;
 	}
-	if (params->dot == 1 && params->prec == 0)
+	if (params->dot == 1 && params->prec == 0 && params->dot_num == 0)
 		params->prec += 1;
 	params->type = **str;
 }
@@ -103,4 +105,14 @@ void	precision(t_printf *params, int *count)
 		*count += 1;
 		i++;
 	}
+}
+
+int		verif_dot(t_printf *params)
+{
+	if((params->type == 'd' || params->type == 'i' || params->type == 'u') && params->prec == 0 && params->var_int == 0 && params->dot == 1)
+		return (0);
+	else if((params->type == 'x' || params->type == 'X') && params->prec == 0 && params->var_unsint == 0 && params->dot == 1)
+		return (0);
+	else 
+		return(1);
 }

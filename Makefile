@@ -6,7 +6,7 @@
 #    By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 17:55:40 by stbaleba          #+#    #+#              #
-#    Updated: 2019/11/12 18:26:18 by stbaleba         ###   ########.fr        #
+#    Updated: 2019/11/12 19:31:17 by stbaleba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,4 +33,4 @@ clean:
 	rm -rf $(OBJ)
 fclean: clean
 	rm -rf $(NAME)
-
+re: fclean all
