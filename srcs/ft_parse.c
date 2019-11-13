@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/13 18:42:27 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:55:01 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_printf	*init_struct(void)
 	new->dot = 0;
 	new->prec = 0;
 	new->dot_num = 0;
+	new->var_int = 0;
 	return (new);
 }
 
@@ -52,9 +53,10 @@ void		ft_parsing_flags(t_printf *params, int *count)
 
 void		parse(t_printf *params, int *count)
 {
-	if (params->type == 'd' || params->type == 'i'
-	|| params->type == 'u')
+	if (params->type == 'd' || params->type == 'i')
 		ft_putnbr(params->var_int, count);
+	else if(params->type == 'u')
+		ft_putnbr(params->var_unsint, count);
 	else if (params->type == 'c')
 		ft_putchar_int(params->var_int, count);
 	else if (params->type == 's' && params->dot == 0)
@@ -82,7 +84,7 @@ void		ft_fill_struct(const char **str, int *count, va_list ap)
 		ft_putaddr(params, count, ap);
 	else if (params->type == 's')
 		params->var_string = va_arg(ap, char *);
-	else if (params->type == 'x' || params->type == 'X')
+	else if (params->type == 'x' || params->type == 'X' || params->type == 'u')
 		params->var_unsint = va_arg(ap, int);
 	else if (params->type != '%')
 		params->var_int = va_arg(ap, int);

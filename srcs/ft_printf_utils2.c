@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/13 19:28:14 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:54:33 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	width(t_printf *params, int *count)
 		size = count_numbers(params->var_unsint, 16);
 	else if (params->type == 's')
 		size = ft_strlen(params->var_string);
+	else if(params->type == 'u')
+		size = count_numbers(params->var_unsint, 10);
 	else
 		size = count_numbers(params->var_int, 10);
 	if(params->type == 's' && params->dot == 1)
@@ -52,6 +54,8 @@ void	width_zero(t_printf *params, int *count)
 		size = count_numbers(params->var_unslong, 16) + 2;
 	else if (params->type == 'x' || params->type == 'X')
 		size = count_numbers(params->var_unsint, 16);
+	else if(params->type == 'u')
+		size = count_numbers(params->var_unsint, 10);
 	else
 		size = count_numbers(params->var_int, 10);
 	if (params->var_int < 0)
@@ -113,9 +117,9 @@ void	precision(t_printf *params, int *count)
 
 int		verif_dot(t_printf *params)
 {
-	if((params->type == 'd' || params->type == 'i' || params->type == 'u') && params->prec == 0 && params->var_int == 0 && params->dot == 1)
+	if((params->type == 'd' || params->type == 'i') && params->prec == 0 && params->var_int == 0 && params->dot == 1)
 		return (0);
-	else if((params->type == 'x' || params->type == 'X') && params->prec == 0 && params->var_unsint == 0 && params->dot == 1)
+	else if((params->type == 'x' || params->type == 'X' || params->type == 'u') && params->prec == 0 && params->var_unsint == 0 && params->dot == 1)
 		return (0);
 	else 
 		return(1);

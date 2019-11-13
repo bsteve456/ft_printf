@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:34:39 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/13 18:31:12 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:49:23 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_printf
 }				t_printf;
 void			parse(t_printf *params, int *count);
 void			ft_putchar(char c);
-void			ft_putnbr(int nbr, int *p);
+void			ft_putnbr(long nbr, int *p);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 void			ft_putstr(char *str, int *p);
 void			ft_putchar_int(unsigned char c, int *p);

@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:43:31 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/11/12 16:39:45 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:49:05 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int nbr, int *p)
+void	ft_putnbr(long nbr, int *p)
 {
-	unsigned int nb;
+	unsigned long nb;
 
 	if (nbr < 0)
 	{
