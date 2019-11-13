@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/13 20:04:24 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/14 00:17:28 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,11 @@ void	fill_width_prec(const char **str, t_printf *params, va_list ap)
 	}
 	if (params->dot == 1 && params->prec == 0 && params->dot_num == 0)
 		params->prec += 1;
+	if(params->dot == 1 && params->prec < 0)
+	{
+		params->dot = 0;
+		params->prec = 0;
+	}
 	params->type = **str;
 }
 
