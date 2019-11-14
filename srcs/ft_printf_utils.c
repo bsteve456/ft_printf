@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:14:20 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/14 15:02:08 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/14 16:18:42 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		count_numbers(long number, int base, t_printf *params)
 	int count;
 
 	count = (number < 0) ? 1 : 0;
-	if (number == 0 && params->prec == 0 && params->dot_num > 0)
+	if (number == 0 && params->prec == 0 && params->dot_num > 0 && params->dot == 1)
 		return (0);
 	else if (number == 0)
 		return (1);
