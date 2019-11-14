@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/14 00:17:28 by blacking         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:34:07 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	width(t_printf *params, int *count)
 		size = params->prec;
 	if(params->type != 's')
 		size = (params->prec > size) ? params->prec : size;
-	if (params->var_int < 0 && params->dot == 1 &&params->prec > 1)
+	if (params->var_int < 0 && params->dot == 1 &&params->prec >= size)
 		size += 1;
 	while (i < (params->width - size))
 	{
