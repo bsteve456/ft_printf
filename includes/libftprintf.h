@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:34:39 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/13 19:49:23 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/14 15:02:31 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			ft_putaddr(t_printf *params, int *p, va_list ap);
 void			ft_putnbr_hexa(long nbr, int *p, t_printf *params);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
-int				count_numbers(long number, int base);
+int				count_numbers(long number, int base, t_printf *params);
 size_t			ft_strlen(const char *s);
 void			ft_fill_struct(const char **str, int *count, va_list ap);
 void			width(t_printf *params, int *count);

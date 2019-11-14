@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:04:31 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/14 14:34:07 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/14 16:02:22 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	width(t_printf *params, int *count)
 	if (params->type == 'c')
 		size = 1;
 	else if (params->type == 'p')
-		size = count_numbers(params->var_unslong, 16) + 2;
+		size = count_numbers(params->var_unslong, 16, params) + 2;
 	else if (params->type == 'x' || params->type == 'X')
-		size = count_numbers(params->var_unsint, 16);
+		size = count_numbers(params->var_unsint, 16, params);
 	else if (params->type == 's')
 		size = ft_strlen(params->var_string);
 	else if(params->type == 'u')
-		size = count_numbers(params->var_unsint, 10);
+		size = count_numbers(params->var_unsint, 10, params);
 	else
-		size = count_numbers(params->var_int, 10);
+		size = count_numbers(params->var_int, 10, params);
 	if(params->type == 's' && params->dot == 1 && params->prec <= size)
 		size = params->prec;
 	if(params->type != 's')
@@ -52,19 +52,21 @@ void	width_zero(t_printf *params, int *count)
 	i = 0;
 	width_prec = (params->dot == 1) ? params->prec : params->width;
 	if (params->type == 'p')
-		size = count_numbers(params->var_unslong, 16) + 2;
+		size = count_numbers(params->var_unslong, 16, params) + 2;
 	else if (params->type == 'x' || params->type == 'X')
-		size = count_numbers(params->var_unsint, 16);
+		size = count_numbers(params->var_unsint, 16, params);
 	else if(params->type == 'u')
-		size = count_numbers(params->var_unsint, 10);
+		size = count_numbers(params->var_unsint, 10, params);
 	else
-		size = count_numbers(params->var_int, 10);
+		size = count_numbers(params->var_int, 10, params);
 	if (params->var_int < 0)
 	{
 		ft_putchar_int('-', count);
 		params->var_int = -(params->var_int);
 		if (params->dot == 1)
 			width_prec += 1;
+		if(params->minus == 1)
+			params->width -= 1;
 	}
 	while (i < (width_prec - size))
 	{
