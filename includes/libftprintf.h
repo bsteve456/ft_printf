@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:34:39 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/14 15:02:31 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/15 14:29:33 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_printf
 	int				zero;
 	int				dot;
 	int				prec;
-	int 			dot_num;
+	int				dot_num;
 }				t_printf;
 void			parse(t_printf *params, int *count);
 void			ft_putchar(char c);
@@ -48,4 +48,7 @@ void			fill_width_prec(const char **str, t_printf *params, va_list ap);
 void			width_zero(t_printf *params, int *count);
 void			precision(t_printf *params, int *count);
 int				verif_dot(t_printf *params);
+int				width_part2(t_printf *params, int size);
+int				width_zero_neg(t_printf *params, int width_prec, int *count);
+void			check_dot_prec(t_printf *params);
 #endif

@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:21:28 by blacking          #+#    #+#             */
-/*   Updated: 2019/11/14 17:53:34 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/11/15 13:49:23 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		ft_parsing_flags(t_printf *params, int *count)
 		width_zero(params, count);
 	if (params->type == 'p')
 		write(1, "0x", 2);
-	if(verif_dot(params) == 1)
+	if (verif_dot(params) == 1)
 		parse(params, count);
 	if (params->minus == 1)
 		width(params, count);
@@ -56,7 +56,7 @@ void		parse(t_printf *params, int *count)
 {
 	if (params->type == 'd' || params->type == 'i')
 		ft_putnbr(params->var_int, count);
-	else if(params->type == 'u')
+	else if (params->type == 'u')
 		ft_putnbr(params->var_unsint, count);
 	else if (params->type == 'c')
 		ft_putchar_int(params->var_int, count);
